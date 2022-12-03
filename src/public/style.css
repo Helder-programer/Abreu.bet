@@ -1,0 +1,55 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.navbar {
+    border-bottom: 1px solid black;
+}
+
+
+
+main {
+    padding: 40px 100px 0px 100px;
+}
+
+.table {
+    text-align: center;
+}
+
+.fa-solid.fa-pen-to-square {
+    color: rgb(247, 172, 34);
+    margin-right: 10px;
+}
+
+.fa-solid.fa-trash {
+    color: rgb(202, 3, 3);
+}
+
+/*PLAYER REGISTRATION*/
+
+#btn-new-player {
+    margin-bottom: 20px;
+    font-size: 15pt;
+    font-weight: bold;
+    
+}
+
+.fa-solid.fa-plus {
+    margin-right: 5px;
+}
+
+#player-registration-form > input {
+    margin-bottom: 20px;
+    width: 50%;
+}
+
+/*GAME REGISTRATION*/
+
+.text-form {
+    margin-bottom: 15px;
+}
+
+.text-form input {
+    width: 70%;
+}

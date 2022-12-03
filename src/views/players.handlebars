@@ -1,0 +1,19 @@
+<a href="/register_player" class="btn btn-primary" id="btn-new-player"><i class="fa-solid fa-plus"></i>Cadastrar Jogador</a>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Pontos</th>
+        <th>Operação</th>
+    </tr>
+    {{#each player}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{name}}</td>
+        <td>{{points}}</td>
+        <td><a href="/edit_player/{{id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a href="/delete_player/{{id}}"><i class="fa-solid fa-trash"></i></a>
+        </td>
+    </tr>
+    {{/each}}
+</table>

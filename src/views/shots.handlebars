@@ -1,0 +1,29 @@
+<a href="/register_shot" class="btn btn-primary" id="btn-new-player"><i class="fa-solid fa-plus"></i>Cadastrar Jogada</a>
+<table class="table">
+    <tr>
+        <th>Nome Time 01</th>
+        <th>Nome Time 02</th>
+        <th>Gols Time 01</th>
+        <th>Gols Time 02</th>
+        <th>Data do Jogo</th>
+        <th>Jogador</th>
+        <th>Palpite time 01</th>
+        <th>Palpite time 02</th>
+        <th>green</th>
+        <th>Operação</th>
+    </tr>
+    {{#each shot}}
+    <tr>
+        <td>{{team_01_name}}</td>
+        <td>{{team_02_name}}</td>
+        <td>{{team_01_goals}}</td>
+        <td>{{team_02_goals}}</td>
+        <td>{{formatDate game_date}}</td>
+        <td>{{name}}</td>
+        <td>{{team_01_shot}}</td>
+        <td>{{team_02_shot}}</td>
+        <td class="green">{{green}}</td>
+        <td><a href="/delete_shot/{{game_id}}/{{player_id}}"><i class="fa-solid fa-trash"></i></a></td>
+    </tr>
+    {{/each}}
+</table>

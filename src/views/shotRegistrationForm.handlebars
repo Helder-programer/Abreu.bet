@@ -1,0 +1,30 @@
+<form action="/add_shot" method="post" id="player-registration-form">
+    <div class="text-form">
+        <label for="">Jogador:</label>
+        <select name="player" id="" class="form-select" style="width: 40%;">
+            {{#each player}}
+            <option value="{{id}}">{{name}}</option>
+            {{/each}}
+        </select>
+    </div>
+
+    <div class="text-form">
+        <label for="">Jogador:</label>
+        <select name="game" id="" class="form-select" style="width: 40%;">
+            {{#each game}}
+            <option value="{{id}}">{{team_01_name}} x {{team_02_name}} | {{formatDate game_date}}</option>
+            {{/each}}
+        </select>
+    </div>
+
+    <div class="text-form">
+        <label for="">Palpite time 01:</label>
+        <input type="number" class="form-control" name="team_01_shot" autocomplete="off">
+    </div>
+    <div class="text-form">
+        <label for="">Palpite time 02:</label>
+        <input type="number" class="form-control" name="team_02_shot" autocomplete="off">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+</form>

@@ -1,0 +1,25 @@
+<a href="/register_game" class="btn btn-primary" id="btn-new-player"><i class="fa-solid fa-plus"></i>Cadastrar Jogo</a>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Nome Time 01</th>
+        <th>Nome Time 02</th>
+        <th>Gols Time 01</th>
+        <th>Gols Time 02</th>
+        <th>Data do Jogo</th>
+        <th>Operação</th>
+    </tr>
+    {{#each game}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{team_01_name}}</td>
+        <td>{{team_02_name}}</td>
+        <td>{{team_01_goals}}</td>
+        <td>{{team_02_goals}}</td>
+        <td>{{formatDate game_date}}</td>
+        <td><a href="/edit_game/{{id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a href="/delete_game/{{id}}"><i class="fa-solid fa-trash"></i></a>
+        </td>
+    </tr>
+    {{/each}}
+</table>
