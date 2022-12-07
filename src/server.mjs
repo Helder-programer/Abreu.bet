@@ -21,12 +21,10 @@ app.engine('handlebars', engine ({
     }
 }));
 
-
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'handlebars');
 app.set('views', `${path.join(__dirname, 'views')}`);
 
 app.use(routes);
-
 
 app.listen(8080);
