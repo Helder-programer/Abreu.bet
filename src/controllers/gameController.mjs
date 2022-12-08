@@ -36,16 +36,18 @@ export default {
     },
 
     async showGames(req, res) {
-        await Game.findAll().then(game => {
-            res.render('games', { game });
-        }).catch(err => {
+        try {
+            let games = await Game.findAll();
+            console.log(games);
+            res.render('games', { games });
+        } catch (err) {
             res.send(`Algo deu errado. ${err}`);
-        });
+        }
     },
 
     async deleteGame(req, res) {
         let gameId = req.params.id;
-        await Game.destroy({ where: { 'id': gameId } }).then(() => {
+        Game.destroy({ where: { 'id': gameId } }).then(() => {
             res.redirect('/');
         }).catch(err => {
             res.send(`Algo deu errado. ${err}`);
@@ -53,12 +55,13 @@ export default {
     },
 
     async gameAlterationForm(req, res) {
-        let gameId = req.params.id;
-        await Game.findByPk(gameId).then(game => {
+        try {
+            let gameId = req.params.id;
+            let game = await Game.findByPk(gameId);
             res.render('gameAlterationForm', { game });
-        }).catch(err => {
+        } catch (err) {
             res.send(`Algo deu errado. ${err}`);
-        });
+        }
     },
 
     async updateGame(req, res) {
@@ -77,7 +80,7 @@ export default {
             && game_date != ""
             && game_date != null
         ) {
-            await Game.update({ team_01_name, team_02_name, team_01_goals, team_02_goals, game_date }, { where: { 'id': gameId } }).then(() => {
+            Game.update({ team_01_name, team_02_name, team_01_goals, team_02_goals, game_date }, { where: { 'id': gameId } }).then(() => {
                 res.redirect('/');
             }).catch(err => {
                 res.send(`Algo deu errado. ${err}`);

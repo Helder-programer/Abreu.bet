@@ -20,16 +20,13 @@ export default {
     },
 
     async shotRegistrationForm(req, res) {
-        await Player.findAll().then(player => {
-
-            Game.findAll().then(game => {
-                res.render('shotRegistrationForm', { player, game });
-            }).catch(err => {
-                res.send(`Algo deu errado. ${err}`);
-            });
-        }).catch(err => {
+        try {
+            let player = await Player.findAll();
+            let game = await Game.findAll();
+            res.render('shotRegistrationForm', { player, game });
+        } catch (err) {
             res.send(`Algo deu errado. ${err}`);
-        });
+        }
     },
 
     async addShot(req, res) {
@@ -45,7 +42,7 @@ export default {
     async deleteShot(req, res) {
         let gameId = req.params.gameid;
         let playerId = req.params.playerid;
-        await Shot.findAll({ where: {game_id: gameId, player_id: playerId } }).then((shot) => {
+        await Shot.findAll({ where: { game_id: gameId, player_id: playerId } }).then((shot) => {
             if (shot[0].green == 'yes') {
                 Player.findByPk(playerId).then(player => {
                     let playerPoints = player.points;
@@ -53,8 +50,8 @@ export default {
                     Player.update({ points: playerPoints }, { where: { id: playerId } });
                 });
             }
-            
-            Shot.destroy({ where: {game_id: gameId, player_id: playerId } });
+
+            Shot.destroy({ where: { game_id: gameId, player_id: playerId } });
             res.redirect('/shots');
 
 

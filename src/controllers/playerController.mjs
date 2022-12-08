@@ -10,7 +10,7 @@ export default {
     async addPlayer(req, res) {
         let { name } = req.body;
         if (name != "" && name != null) {
-            await Player.create({ name: name }).then(()=> {
+            await Player.create({ name: name }).then(() => {
                 res.redirect('/players');
             }).catch((err) => {
                 res.send(`Algo deu errado. ${err}`);
@@ -21,15 +21,16 @@ export default {
     },
 
     async showPlayers(req, res) {
-        await Player.findAll({order: [['points', 'DESC']]}).then(player => {
+        try {
+            let player = await Player.findAll({ order: [['points', 'DESC']] });
             res.render('players', { player });
-        }).catch(err => {
+        } catch (err) {
             res.send(`Algo deu errado. ${err}`);
-        });
+        }
     },
 
     async deletePlayer(req, res) {
-        await Player.destroy({ where: { 'id': req.params.id } }).then(() => {
+        Player.destroy({ where: { 'id': req.params.id } }).then(() => {
             res.redirect('/players');
         }).catch(err => {
             res.send(`Algo deu errado. ${err}`);
@@ -41,19 +42,20 @@ export default {
     },
 
     async playerAlterationForm(req, res) {
-        let playerId = req.params.id;
-        await Player.findByPk(playerId).then(player => {
-            res.render('playerAlterationForm', {player});
-        }).catch(err => {
+        try {
+            let playerId = req.params.id;
+            let player = await Player.findByPk(playerId)
+            res.render('playerAlterationForm', { player });
+        } catch (err) {
             res.send(`Algo deu errado. ${err}`);
-        });
+        }
     },
 
     async updatePlayer(req, res) {
         let { name } = req.body;
         let playerId = req.params.id;
         if (name != "" && name != null) {
-            await Player.update({name}, {where: {'id': playerId }}).then(() => {
+            Player.update({ name }, { where: { 'id': playerId } }).then(() => {
                 res.redirect('/players');
             }).catch((err) => {
                 res.send(`Algo deu errado. ${err}`);
